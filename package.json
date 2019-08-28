@@ -1,5 +1,15 @@
 {
 	"name": "html-to-react-parser",
+	"xo": {
+		"ignores": [
+			"demo/**"
+		]
+	},
+	"ava": {
+		"files": [
+			"test.js"
+		]
+	},
 	"version": "0.0.2",
 	"description": "My bedazzling module",
 	"license": "MIT",
