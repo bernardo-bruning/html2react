@@ -7,6 +7,12 @@ test('transform div with class row to Row', t => {
 	t.is(convert(input), expected);
 });
 
+test('transform span', t => {
+	const input = '<span class="test" />';
+	const expected = '<span className="test"/>';
+	t.is(convert(input), expected);
+});
+
 test('transform div with class row to Row and div with col to Col', t => {
 	const input = `<div class="row">
 	<div class="col-md-6 col-sm-12 col-xs-12 col-lg-6 other-class">
@@ -14,6 +20,12 @@ test('transform div with class row to Row and div with col to Col', t => {
 	</div>
 </div>`;
 	const expected = '<Row><Col className="other-class" md="6" sm="12" xs="12" lg="6"><span>this is a test</span></Col></Row>';
+	t.is(convert(input, false), expected);
+});
+
+test('tranform div to Row with className', t => {
+	const input = '<div class="row teste" />';
+	const expected = '<Row className="teste"/>';
 	t.is(convert(input, false), expected);
 });
 
