@@ -2,23 +2,20 @@
 
 > My bedazzling module
 
-
 ## Install
 
 ```
 $ npm install html2react
 ```
 
-
 ## Usage
 
 ```js
-const html2react = require('html2react');
+const html2react = require("html2react");
 
-html2react('unicorns');
-//=> 'unicorns & rainbows'
+html2react('<div className="row"></div>');
+//=> '<Row></Row>'
 ```
-
 
 ## API
 
@@ -40,7 +37,6 @@ Type: `boolean`<br>
 Default: `false`
 
 Lorem ipsum.
-
 
 ## CLI
 
