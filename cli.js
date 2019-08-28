@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-'use strict';
-const meow = require('meow');
-const html2react = require('.');
+"use strict";
+const meow = require("meow");
+const html2react = require(".");
 
 const cli = meow(`
 	Usage
@@ -17,4 +17,4 @@ const cli = meow(`
 	  ponies & rainbows
 `);
 
-console.log(html2react(cli.input[0] || 'unicorns'));
+console.log(html2react(cli.input[0] || "unicorns"));

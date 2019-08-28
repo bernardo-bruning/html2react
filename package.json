@@ -1,14 +1,19 @@
 {
-	"name": "html2react",
-	"version": "0.0.1",
+	"name": "html-to-react-parser",
+	"version": "0.0.2",
 	"description": "My bedazzling module",
 	"license": "MIT",
 	"repository": "bernardo-bruning/html2react",
 	"author": {
 		"name": "Bernardo de Oliveira Bruning",
-		"email": "bernardo.bruning@amcom.com.br",
-		"url": "undefined"
+		"email": "bernardo.bruning@gmail.com"
 	},
+	"contributors": [
+		{
+			"name": "Fabio Luiz da Silva Oliveira",
+			"email": "oliveirafabioluiz@outlook.com"
+		}
+	],
 	"bin": "cli.js",
 	"engines": {
 		"node": ">=8"
@@ -18,7 +23,9 @@
 	},
 	"files": [
 		"index.js",
-		"cli.js"
+		"cli.js",
+		"rules.js",
+		"transform.js"
 	],
 	"keywords": [
 		"cli-app",
