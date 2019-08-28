@@ -1,54 +1,55 @@
-import test from 'ava';
-import {transform, convert, rules} from '.';
+import test from "ava";
+import { transform, convert, rules } from ".";
 
-test('transform div with class row to Row', t => {
+test("transform div with class row to Row", t => {
 	const input = '<div class="row"></div>';
-	const expected = '<Row/>';
+	const expected = "<Row/>";
 	t.is(convert(input), expected);
 });
 
-test('transform div with class row to Row and div with col to Col', t => {
+test("transform div with class row to Row and div with col to Col", t => {
 	const input = `<div class="row">
 	<div class="col-md-6 col-sm-12 col-xs-12 col-lg-6 other-class">
 		<span>this is a test</span>
 	</div>
 </div>`;
-	const expected = '<Row><Col className="other-class" md="6" sm="12" xs="12" lg="6"><span>this is a test</span></Col></Row>';
+	const expected =
+		'<Row><Col className="other-class" md="6" sm="12" xs="12" lg="6"><span>this is a test</span></Col></Row>';
 	t.is(convert(input, false), expected);
 });
 
-test('crawle object and parse value', t => {
+test("crawle object and parse value", t => {
 	const input = {
-		type: 'element',
-		name: 'div',
+		type: "element",
+		name: "div",
 		attributes: {
-			class: 'row'
+			class: "row"
 		}
 	};
 
 	const expected = {
 		attributes: {},
 		elements: [],
-		type: 'element',
-		name: 'Row'
+		type: "element",
+		name: "Row"
 	};
 
 	t.deepEqual(transform(rules, input), expected);
 });
 
-test('transform div row and div col to Row and Col', t => {
+test("transform div row and div col to Row and Col", t => {
 	const input = {
-		type: 'element',
-		name: 'div',
+		type: "element",
+		name: "div",
 		attributes: {
-			class: 'row'
+			class: "row"
 		},
 		elements: [
 			{
-				type: 'element',
-				name: 'div',
+				type: "element",
+				name: "div",
 				attributes: {
-					class: 'col-md-6'
+					class: "col-md-6"
 				}
 			}
 		]
@@ -56,15 +57,15 @@ test('transform div row and div col to Row and Col', t => {
 
 	const expected = {
 		attributes: {},
-		type: 'element',
-		name: 'Row',
+		type: "element",
+		name: "Row",
 		elements: [
 			{
 				elements: [],
-				type: 'element',
-				name: 'Col',
+				type: "element",
+				name: "Col",
 				attributes: {
-					md: '6'
+					md: "6"
 				}
 			}
 		]
