@@ -1,8 +1,8 @@
 {
-  "generator-nm": {
-    "promptValues": {
-      "githubUsername": "bernardo-bruning",
-      "website": "http://undefined"
-    }
-  }
+	"generator-nm": {
+		"promptValues": {
+			"githubUsername": "bernardo-bruning",
+			"website": "http://undefined"
+		}
+	}
 }
