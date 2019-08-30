@@ -15,7 +15,7 @@ test('transform span', t => {
 
 test('transform div with class row to Row and div with col to Col', t => {
 	const input = `<div class="row">
-	<div class="col-md-6 col-sm-12 col-xs-12 col-lg-6 other-class">
+	<div class="col-md-6 col-sm-12 col-12 col-lg-6 other-class">
 		<span>this is a test</span>
 	</div>
 </div>`;

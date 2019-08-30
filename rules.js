@@ -9,7 +9,7 @@ const {
 	prop,
 	reject,
 	any,
-	map,
+	reduce,
 	split,
 	pipe,
 	curry,
@@ -22,13 +22,14 @@ const extract = (cls, classes) => defaultTo('', classes.split(' ').find(x => x.i
 const notEmpty = value => !isEmpty(value);
 const filterEmptyProp = filter(notEmpty);
 const removeItem = (item, list) => reject(match(item), list);
-const removeItens = curry((itens, list) => map(x => removeItem(x, list), itens));
+const removeItens = curry((itens, list) => reduce((c, x) => removeItem(x, c), list, itens));
 const curriedSkipClass = classesSkipped => pipe(split(' '), removeItens(classesSkipped), join(' '));
 const skipClass = uncurryN(2, curriedSkipClass);
 const match = curry((pattern, value) => matcher.isMatch(value, pattern));
 const renameProp = (oldProp, newProp, obj) => assoc(newProp, prop(oldProp, obj), omit([oldProp], obj));
 const anyClass = (pattern, values) => any(match(pattern))(split(' ', values));
 const hasProps = (path, obj) => hasPath(split('.', path), obj);
+
 const rules = [
 	{
 		is: e => hasProps('attributes.class', e),
@@ -54,7 +55,7 @@ const rules = [
 				name: 'Row',
 				elements: e.elements || [],
 				attributes: filterEmptyProp({
-					className: skipClass(['row'])(e.attributes.className)
+					className: skipClass(['row'], e.attributes.className)
 				})
 			};
 		}
@@ -70,7 +71,7 @@ const rules = [
 					className: join(' ', filter(x => !x.includes('col-'), e.attributes.className.split(' '))),
 					md: extract('col-md-', e.attributes.className),
 					sm: extract('col-sm-', e.attributes.className),
-					xs: extract('col-xs-', e.attributes.className),
+					xs: extract('col-', curriedSkipClass(['col-md-*', 'col-sm-*', 'col-lg-*'])(e.attributes.className)),
 					lg: extract('col-lg-', e.attributes.className)
 				})
 			})
